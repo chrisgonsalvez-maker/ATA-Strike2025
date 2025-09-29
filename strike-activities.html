@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strike Action Playbook</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutral with Soft Blue Accent -->
+    <!-- Application Structure Plan: The application uses a filterable card-based layout. A top navigation bar allows users to filter activities by category ('Advocacy', 'Outreach', 'Morale', 'Arts & Culture'). This structure was chosen over a static table to provide a more engaging, mobile-friendly, and user-directed experience. Users can quickly find activities relevant to their interests. Clicking a card expands it to show detailed logistics, keeping the initial view clean and scannable. -->
+    <!-- Visualization & Content Choices: Report Info: Strike activity list -> Goal: Organize & Inform -> Presentation Method: Interactive, filterable HTML cards -> Interaction: Category filtering buttons, expandable details on each card. Justification: This method allows users to easily digest a large list of qualitative information by breaking it down into manageable, user-selected categories. It promotes exploration without overwhelming the user. Method: Vanilla JavaScript for dynamic rendering and interaction, Tailwind CSS for styling. NO SVG/Mermaid used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f7f4;
+            color: #4a4a4a;
+        }
+        .filter-btn {
+            transition: all 0.3s ease;
+        }
+        .filter-btn.active {
+            background-color: #3b82f6;
+            color: #ffffff;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .card-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .card-details.open {
+            max-height: 500px;
+            transition: max-height 0.5s ease-in;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto px-4 py-8 md:py-12">
+        
+        <header class="text-center mb-8 md:mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800">The Power of Connection</h1>
+            <p class="mt-2 text-lg md:text-xl text-gray-600">Your Interactive Strike Action Playbook</p>
+            <p class="mt-4 max-w-3xl mx-auto text-base text-gray-500">This strategy guide is designed to empower teachers to maintain solidarity and amplify their message throughout the job action, focusing on community building and public awareness outside of school property. Use the filters below to explore activities.</p>
+        </header>
+        
+        <nav id="filter-nav" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12">
+            <button class="filter-btn active font-semibold py-2 px-4 rounded-full bg-white text-gray-700 hover:bg-blue-100 shadow-sm" data-filter="All">All Activities</button>
+            <button class="filter-btn font-semibold py-2 px-4 rounded-full bg-white text-gray-700 hover:bg-blue-100 shadow-sm" data-filter="Direct Advocacy & Governance">📢 Advocacy</button>
+            <button class="filter-btn font-semibold py-2 px-4 rounded-full bg-white text-gray-700 hover:bg-blue-100 shadow-sm" data-filter="Public Education & Outreach">🌍 Outreach</button>
+            <button class="filter-btn font-semibold py-2 px-4 rounded-full bg-white text-gray-700 hover:bg-blue-100 shadow-sm" data-filter="Community Building & Morale (NEW)">❤️ Morale</button>
+            <button class="filter-btn font-semibold py-2 px-4 rounded-full bg-white text-gray-700 hover:bg-blue-100 shadow-sm" data-filter="Arts, Culture, & Solidarity">🎨 Arts & Culture</button>
+        </nav>
+
+        <main id="activities-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        </main>
+
+    </div>
+
+    <script>
+        const activities = [
+            {
+                category: "Direct Advocacy & Governance",
+                title: "Advocacy by the Box: MLA Postcard Blitz",
+                description: "A focused, high-energy session where teachers gather to write personalized, powerful postcards to local politicians. This direct-mail campaign ensures our concerns about funding, class size, and education quality land right on their desks.",
+                logistics: "<strong>Set Up:</strong> Host at a community hall, church basement, or large café. Provide pre-addressed cards (or labels) for all target MLAs. <strong>Gear:</strong> Postcards, pens, stamps, and a few sample talking points to guide messaging."
+            },
+            {
+                category: "Direct Advocacy & Governance",
+                title: "Truth Talks: Trustee Forum Attendance",
+                description: "Mobilize a large, visible bloc of teachers to attend scheduled Trustee or School Board meetings. We show unity, ask prepared, hard-hitting questions, and ensure our voices cannot be ignored in the governance process.",
+                logistics: "<strong>Set Up:</strong> Identify meeting dates and times. Create a text chain/group to coordinate attendance and seating. <strong>Gear:</strong> Union colors (t-shirts/hoodies), pre-written questions, small, approved union flags/pins."
+            },
+            {
+                category: "Direct Advocacy & Governance",
+                title: "The Public Seat: Hosted Trustee Engagement",
+                description: "Organize and host our *own* public forum and invite Trustees to participate. This flips the script, forcing officials to engage with the public and teachers on our turf, creating a valuable media opportunity.",
+                logistics: "<strong>Set Up:</strong> Book a public hall or venue (library auditorium). Send formal invitations to Trustees. Assign a confident, trained moderator. <strong>Gear:</strong> Microphone, seating, banner. Promote the event heavily to local media and parents."
+            },
+            {
+                category: "Public Education & Outreach",
+                title: "The Pop-Up Classroom: Community Teach-In Series",
+                description: "Reclaim our role as educators! Host accessible, dynamic, and short mini-lectures in public parks or community centers. We break down complex education issues (e.g., funding formulas, mental health impact) for the public.",
+                logistics: "<strong>Set Up:</strong> Secure park permits or library spaces. Schedule 15-20 minute sessions with rotating speakers. <strong>Gear:</strong> Portable sound system, large poster boards, simple infographics/handouts. Keep the language clear and jargon-free."
+            },
+            {
+                category: "Public Education & Outreach",
+                title: "Solidarity on Wheels: Car Caravan",
+                description: "A highly visual, mobile demonstration! Teachers decorate their cars with bold messages and flags and drive a planned, visible route through town/downtown. This draws media attention and signals widespread support.",
+                logistics: "<strong>Set Up:</strong> Choose a safe assembly point and a pre-approved, traffic-law-compliant route. Pre-purchase window paint, flags, and signs for uniformity. <strong>Gear:</strong> Window paint, tape, union flags/banners, safety marshals in visible vests."
+            },
+            {
+                category: "Public Education & Outreach",
+                title: "Street-Level Info Sessions",
+                description: "A casual, friendly booth setup in high-traffic public areas (farmer's markets, busy corners). This is a low-pressure way to share facts, answer questions, and engage directly with supportive community members.",
+                logistics: "<strong>Set Up:</strong> Book space or find a high-visibility, legal spot. Rotate 2-3 volunteers per shift. <strong>Gear:</strong> Folding table, engaging posters with key facts, simple flyers/Q&A sheets. Ensure volunteers are approachable and trained on talking points."
+            },
+            {
+                category: "Community Building & Morale (NEW)",
+                title: "Teacher Wellness Huddle",
+                description: "Dedicated peer-led sessions focused on supporting the mental and emotional health of striking members. Activities can include mindfulness, light yoga/stretching, or simply a safe space to share feelings and resources.",
+                logistics: "<strong>Set Up:</strong> Partner with a community centre or local gym offering free space. Identify members with skills in mental health, yoga, or counseling to lead sessions. <strong>Gear:</strong> Yoga mats (BYO encouraged), tea/water, a quiet, private room."
+            },
+            {
+                category: "Community Building & Morale (NEW)",
+                title: "Skill-Swap Workshop: PD by Teachers, For Teachers",
+                description: "Leverage the diverse skills within your membership (e.g., coding, crafting, financial literacy, grant writing). Teachers teach each other new professional or life skills, turning strike time into valuable personal development.",
+                logistics: "<strong>Set Up:</strong> Create an online sign-up sheet for workshops/presenters. Host sessions in a community hall or library meeting room. <strong>Gear:</strong> Projector, whiteboards, workshop-specific materials (e.g., art supplies, laptops)."
+            },
+            {
+                category: "Community Building & Morale (NEW)",
+                title: "Creative Chalk Bomb",
+                description: "A high-impact, temporary public art project. Teachers gather at several public park paths or paved squares to create large, colorful chalk murals or messages about the value of public education. **Highly shareable on social media.**",
+                logistics: "<strong>Set Up:</strong> Obtain permission for paved public spaces (if required). Choose high-traffic, visible locations. <strong>Gear:</strong> Buckets of large, vibrant sidewalk chalk. Designate a few leaders to draw key slogans or images."
+            },
+            {
+                category: "Arts, Culture, & Solidarity",
+                title: "Solidarity Supper: Teacher Potluck Picnic",
+                description: "The foundational morale booster. An organized, yet casual, gathering in a park where members share food, build relationships, and reinforce the feeling of collective strength away from the pressure of job action.",
+                logistics: "<strong>Set Up:</strong> Select a park with picnic tables/shelters and bathrooms. Use a sign-up sheet (e.g., Google Sheet) to coordinate dishes and avoid duplicates. <strong>Gear:</strong> Large trash/recycling bags, picnic blankets, basic cutlery/plates, music."
+            },
+            {
+                category: "Arts, Culture, & Solidarity",
+                title: "Art of Advocacy: Banner & Sign Creation",
+                description: "A creative session where teachers gather to make bold, visually striking signs, banners, and flags for future rallies and demonstrations. This is a great, calm group activity that keeps hands busy and spirits high.",
+                logistics: "<strong>Set Up:</strong> Secure a large workspace (hall, gym, large garage). Organize materials by color/type. <strong>Gear:</strong> Fabric (sheets/canvas), paint, brushes, permanent markers, wooden dowels for flags, stencils for consistent lettering."
+            },
+            {
+                category: "Arts, Culture, & Solidarity",
+                title: "The Story We Tell: Digital Video Campaign (NEW)",
+                description: "Launch a coordinated digital campaign where teachers film short (60-90 second) videos sharing *why* they are on strike—personal stories focused on students, classroom conditions, or the future of the profession.",
+                logistics: "<strong>Set Up:</strong> Create a simple guide with filming tips (good light, clear audio). Provide a unifying hashtag and a central submission portal. <strong>Gear:</strong> Cell phones (all that’s needed!), basic video editing software/volunteers."
+            },
+            {
+                category: "Arts, Culture, & Solidarity",
+                title: "Community Care Drive",
+                description: "Expand your Food Drive to a broader \"Care Drive.\" Collect food, school supplies (for when the strike ends), or warm clothing for vulnerable families in the community. This demonstrates that teachers care, even when they aren't teaching.",
+                logistics: "<strong>Set Up:</strong> Partner with one or two large, trusted local charities or food banks. Establish central drop-off locations (a church, a member’s garage). <strong>Gear:</strong> Clearly labeled donation bins, flyers detailing needed items, organized transportation for collected goods."
+            }
+        ];
+
+        const activitiesGrid = document.getElementById('activities-grid');
+        const filterNav = document.getElementById('filter-nav');
+        const filterButtons = filterNav.querySelectorAll('.filter-btn');
+
+        const categoryColors = {
+            "Direct Advocacy & Governance": "border-t-4 border-red-400",
+            "Public Education & Outreach": "border-t-4 border-blue-400",
+            "Community Building & Morale (NEW)": "border-t-4 border-yellow-400",
+            "Arts, Culture, & Solidarity": "border-t-4 border-green-400"
+        };
+        
+        const renderActivities = (filter = 'All') => {
+            activitiesGrid.innerHTML = '';
+            const filteredActivities = (filter === 'All') 
+                ? activities 
+                : activities.filter(activity => activity.category === filter);
+
+            filteredActivities.forEach(activity => {
+                const card = document.createElement('div');
+                card.className = `bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col ${categoryColors[activity.category]}`;
+                card.innerHTML = `
+                    <div class="p-6 flex-grow">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">${activity.title}</h3>
+                        <p class="text-gray-600 text-base leading-relaxed">${activity.description}</p>
+                    </div>
+                    <div class="card-details px-6 pb-6 text-sm text-gray-700 leading-normal">
+                         <h4 class="font-semibold mb-2 text-gray-800">Logistics & Gear Checklist</h4>
+                        <p>${activity.logistics}</p>
+                    </div>
+                    <div class="bg-gray-50 px-6 py-3 border-t border-gray-100">
+                        <button class="details-btn font-semibold text-blue-500 hover:text-blue-700 transition-colors duration-200">
+                           Show Details <span class="arrow">▼</span>
+                        </button>
+                    </div>
+                `;
+                activitiesGrid.appendChild(card);
+            });
+        };
+        
+        filterNav.addEventListener('click', (e) => {
+            if (e.target.classList.contains('filter-btn')) {
+                const filter = e.target.dataset.filter;
+                
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                e.target.classList.add('active');
+
+                renderActivities(filter);
+            }
+        });
+
+        activitiesGrid.addEventListener('click', e => {
+            if (e.target.classList.contains('details-btn')) {
+                const details = e.target.parentElement.previousElementSibling;
+                const arrow = e.target.querySelector('.arrow');
+                details.classList.toggle('open');
+                if (details.classList.contains('open')) {
+                    e.target.innerHTML = 'Hide Details <span class="arrow">▲</span>';
+                } else {
+                    e.target.innerHTML = 'Show Details <span class="arrow">▼</span>';
+                }
+            }
+        });
+
+        renderActivities();
+    </script>
+</body>
+</html>
