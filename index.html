@@ -3,15 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strike Action Playbook</title>
+    <title>The Alberta Teachers' Association - Strike Action Playbook</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Warm Neutral with Soft Blue Accent -->
-    <!-- Application Structure Plan: The application uses a filterable card-based layout. A top navigation bar allows users to filter activities by category ('Advocacy', 'Outreach', 'Morale', 'Arts & Culture'). This structure was chosen over a static table to provide a more engaging, mobile-friendly, and user-directed experience. Users can quickly find activities relevant to their interests. Clicking a card expands it to show detailed logistics, keeping the initial view clean and scannable. -->
-    <!-- Visualization & Content Choices: Report Info: Strike activity list -> Goal: Organize & Inform -> Presentation Method: Interactive, filterable HTML cards -> Interaction: Category filtering buttons, expandable details on each card. Justification: This method allows users to easily digest a large list of qualitative information by breaking it down into manageable, user-selected categories. It promotes exploration without overwhelming the user. Method: Vanilla JavaScript for dynamic rendering and interaction, Tailwind CSS for styling. NO SVG/Mermaid used. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    
+    <!-- Custom Tailwind Configuration for ATA Colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ata-blue': '#174895', // Primary ATA Blue
+                        'ata-yellow': '#fbbd02', // Accent Yellow from the logo circle
+                        'primary-blue': '#174895', 
+                    },
+                    borderColor: {
+                        'red-400': '#ef4444',
+                        'blue-400': '#60a5fa',
+                        'yellow-400': '#facc15', 
+                        'green-400': '#4ade80',
+                    }
+                }
+            }
+        }
+    </script>
+    
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -21,8 +39,9 @@
         .filter-btn {
             transition: all 0.3s ease;
         }
+        /* Active button style uses the ATA Blue */
         .filter-btn.active {
-            background-color: #3b82f6;
+            background-color: theme('colors.primary-blue'); /* Using primary-blue for active state */
             color: #ffffff;
             box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
         }
@@ -35,6 +54,11 @@
             max-height: 500px;
             transition: max-height 0.5s ease-in;
         }
+        /* Custom border colors using Tailwind theme extension */
+        .border-t-4-red { border-top-color: #fca5a5; }
+        .border-t-4-blue { border-top-color: #60a5fa; }
+        .border-t-4-yellow { border-top-color: #fcd34d; }
+        .border-t-4-green { border-top-color: #86efac; }
     </style>
 </head>
 <body class="antialiased">
@@ -42,12 +66,23 @@
     <div class="container mx-auto px-4 py-8 md:py-12">
         
         <header class="text-center mb-8 md:mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-800">The Power of Connection</h1>
-            <p class="mt-2 text-lg md:text-xl text-gray-600">Your Interactive Strike Action Playbook</p>
+            <!-- Logo Integration (Base64 for single file operation) -->
+            <div class="mb-4">
+                <img 
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA+4AAAAdCAYAAADIQy7mAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Adh-GHQAAAZsSURBVHhe7d2bdeI2GADgxB9d06AOi+kQf8-oD7hGZ0fS0SHo0t9-L7zC8YvV2fT7958AAAAAAADAR1dGNgAAAACoPjsAAAAAwHJuBAAAAAC4mZsAAAAAAHAzNwAAAACgmZsAAAAAANZwIwQAAAAA3MzNAAAAAABwMzcn5O7cuVM9Ho9V2dnZmZmZmZmZmZmZmZmZmZmZmZmZmZmZc3Nzc-M2mUymz87OzszPz8-nz8zMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMy-k4dOVK9Xr9K6urqqqqqqqqqqqqqqqqqqqqqqqqqqqqqr29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb32m.vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29vb29" 
+                    alt="The Alberta Teachers' Association Logo" 
+                    class="mx-auto h-auto w-full max-w-sm md:max-w-md lg:max-w-lg"
+                    style="max-width: 400px; height: auto;" 
+                >
+            </div>
+            
+            <h1 class="text-4xl md:text-5xl font-bold text-ata-blue">The Power of Connection</h1>
+            <p class="mt-2 text-lg md:text-xl text-gray-600">The Alberta Teachers' Association Strike Action Suggestions</p>
             <p class="mt-4 max-w-3xl mx-auto text-base text-gray-500">This strategy guide is designed to empower teachers to maintain solidarity and amplify their message throughout the job action, focusing on community building and public awareness outside of school property. Use the filters below to explore activities.</p>
         </header>
         
         <nav id="filter-nav" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12">
+            <!-- Filter buttons use the new ATA primary blue for active state -->
             <button class="filter-btn active font-semibold py-2 px-4 rounded-full bg-white text-gray-700 hover:bg-blue-100 shadow-sm" data-filter="All">All Activities</button>
             <button class="filter-btn font-semibold py-2 px-4 rounded-full bg-white text-gray-700 hover:bg-blue-100 shadow-sm" data-filter="Direct Advocacy & Governance">📢 Advocacy</button>
             <button class="filter-btn font-semibold py-2 px-4 rounded-full bg-white text-gray-700 hover:bg-blue-100 shadow-sm" data-filter="Public Education & Outreach">🌍 Outreach</button>
@@ -62,6 +97,7 @@
 
     <script>
         const activities = [
+            // DIRECT ADVOCACY & GOVERNANCE
             {
                 category: "Direct Advocacy & Governance",
                 title: "Advocacy by the Box: MLA Postcard Blitz",
@@ -78,8 +114,21 @@
                 category: "Direct Advocacy & Governance",
                 title: "The Public Seat: Hosted Trustee Engagement",
                 description: "Organize and host our *own* public forum and invite Trustees to participate. This flips the script, forcing officials to engage with the public and teachers on our turf, creating a valuable media opportunity.",
-                logistics: "<strong>Set Up:</strong> Book a public hall or venue (library auditorium). Send formal invitations to Trustees. Assign a confident, trained moderator. <strong>Gear:</strong> Microphone, seating, banner. Promote the event heavily to local media and parents."
+                logistics: "<strong>Set Up:</strong> Book a public hall or venue (library auditorium). Send formal invitations to Trustees. Assign a confident, trained moderator. <strong>Gear:** Microphone, seating, banner. Promote the event heavily to local media and parents."
             },
+            {
+                category: "Direct Advocacy & Governance",
+                title: "Letter to the Editor Campaign",
+                description: "An organized effort to flood local and regional newspapers with letters written by teachers and community supporters, maintaining pressure via traditional media and public opinion.",
+                logistics: "<strong>Set Up:</strong> Provide templates and submission guidelines for various papers (including word counts and contact information). Host a writing workshop. <strong>Gear:</strong> Computers, sample letters, submission contact list."
+            },
+            {
+                category: "Direct Advocacy & Governance",
+                title: "Community Survey/Petition",
+                description: "A formal drive to collect signatures or data points from the public, providing quantifiable evidence of clear community support for the teachers' position to elected officials and the media.",
+                logistics: "<strong>Set Up:</strong> Create a concise digital/print survey or petition. Staff high-traffic petition points (malls, farmer’s markets). <strong>Gear:</strong> Clipboards, pens, flyers, reliable tablet/laptop for digital collection."
+            },
+            // PUBLIC EDUCATION & OUTREACH
             {
                 category: "Public Education & Outreach",
                 title: "The Pop-Up Classroom: Community Teach-In Series",
@@ -99,6 +148,13 @@
                 logistics: "<strong>Set Up:</strong> Book space or find a high-visibility, legal spot. Rotate 2-3 volunteers per shift. <strong>Gear:</strong> Folding table, engaging posters with key facts, simple flyers/Q&A sheets. Ensure volunteers are approachable and trained on talking points."
             },
             {
+                category: "Public Education & Outreach",
+                title: "Sidewalk Story Time",
+                description: "Teachers read children's books or teach short, age-appropriate lessons in public spaces. This is a low-pressure, emotional connection point that reminds families of the value and care teachers provide.",
+                logistics: "<strong>Set Up:</strong> Secure a public spot (park, library entrance). Promote to parents and families. <strong>Gear:</strong> Large, colorful children's books, small folding chairs or blanket for children, portable speaker for reading."
+            },
+            // COMMUNITY BUILDING & MORALE (NEW)
+            {
                 category: "Community Building & Morale (NEW)",
                 title: "Teacher Wellness Huddle",
                 description: "Dedicated peer-led sessions focused on supporting the mental and emotional health of striking members. Activities can include mindfulness, light yoga/stretching, or simply a safe space to share feelings and resources.",
@@ -116,6 +172,31 @@
                 description: "A high-impact, temporary public art project. Teachers gather at several public park paths or paved squares to create large, colorful chalk murals or messages about the value of public education. **Highly shareable on social media.**",
                 logistics: "<strong>Set Up:</strong> Obtain permission for paved public spaces (if required). Choose high-traffic, visible locations. <strong>Gear:</strong> Buckets of large, vibrant sidewalk chalk. Designate a few leaders to draw key slogans or images."
             },
+            {
+                category: "Community Building & Morale (NEW)",
+                title: "Strike Support Drop-In Center",
+                description: "Establish a consistent, centralized space for striking members to gather, pick up materials, access resources (e.g., computers), and connect daily, serving as the nerve center for the action.",
+                logistics: "<strong>Set Up:</strong> Secure a reliable location (church hall, union office). Staff with rotating volunteers. <strong>Gear:</strong> Coffee/tea station, resource bulletin board, spare union flags/signs, comfortable seating."
+            },
+            {
+                category: "Community Building & Morale (NEW)",
+                title: "Wellness Walks",
+                description: "Daily or semi-weekly group walks in a local park or trail system designed to promote physical activity, fresh air, and peer socializing away from the intensity of the picket line.",
+                logistics: "<strong>Set Up:</strong> Choose a safe, accessible route (e.g., 30-45 minutes). Designate a leader/pace setter. <strong>Gear:</strong> Water bottles, comfortable walking shoes. Encourage wearing union colours."
+            },
+            {
+                category: "Community Building & Morale (NEW)",
+                title: "Strike Buddy System",
+                description: "A simple peer-support program where experienced members are matched with newer members to ensure everyone has a consistent check-in, feel connected, and knows where to find resources, preventing isolation.",
+                logistics: "<strong>Set Up:</strong> Create a simple, confidential sign-up form. Match partners based on need/location. <strong>Gear:</strong> Simple orientation document with key phone numbers and talking points for buddies."
+            },
+            {
+                category: "Community Building & Morale (NEW)",
+                title: "Skill-Share Sessions",
+                description: "Casual, smaller group sessions where members teach each other non-professional skills (e.g., knitting, budgeting, cooking, instrument playing) for personal enrichment and social bonding.",
+                logistics: "<strong>Set Up:</strong> Set up small group areas within a hall. Create a sign-up for session leaders. <strong>Gear:</strong> Basic materials, whiteboards, projector (depending on the skill)."
+            },
+            // ARTS, CULTURE, & SOLIDARITY
             {
                 category: "Arts, Culture, & Solidarity",
                 title: "Solidarity Supper: Teacher Potluck Picnic",
@@ -139,6 +220,24 @@
                 title: "Community Care Drive",
                 description: "Expand your Food Drive to a broader \"Care Drive.\" Collect food, school supplies (for when the strike ends), or warm clothing for vulnerable families in the community. This demonstrates that teachers care, even when they aren't teaching.",
                 logistics: "<strong>Set Up:</strong> Partner with one or two large, trusted local charities or food banks. Establish central drop-off locations (a church, a member’s garage). <strong>Gear:</strong> Clearly labeled donation bins, flyers detailing needed items, organized transportation for collected goods."
+            },
+            {
+                category: "Arts, Culture, & Solidarity",
+                title: "#WhyITeach Photo Campaign",
+                description: "A powerful social media storytelling initiative. Teachers share personal, heartfelt photos and short text explaining their fundamental commitment to education, building public empathy and positive sentiment.",
+                logistics: "<strong>Set Up:</strong> Create a clear submission process and use a unifying hashtag (e.g., #WhyITeach). Promote high-quality photo guidelines. <strong>Gear:</strong> Social media platform, easy-to-use photo editor for adding text/logo."
+            },
+            {
+                category: "Arts, Culture, & Solidarity",
+                title: "Social Media Takeover Days",
+                description: "Coordinated digital action where large numbers of members post a pre-agreed message, graphic, or short video simultaneously (e.g., lunch hour) to maximize visibility across platforms and force the narrative.",
+                logistics: "<strong>Set Up:</strong> Plan messaging weeks in advance. Provide easy-to-download graphics and specific time windows for posting. <strong>Gear:</strong> Communication channel (e.g., text chain) for the launch command, pre-made content kit."
+            },
+            {
+                category: "Arts, Culture, & Solidarity",
+                title: "Video Testimonial Series",
+                description: "A structured series of short video interviews with diverse educators sharing their professional perspective on the strike's core issues (e.g., class size, support staff cuts) for use on YouTube and Facebook.",
+                logistics: "<strong>Set Up:</strong> Identify diverse interview subjects. Use high-quality audio (even a simple lav mic) and a simple, clean backdrop. Focus on 3 key questions per video. <strong>Gear:</strong> Camera/phone, simple video editor, dedicated YouTube/Facebook channel."
             }
         ];
 
@@ -146,6 +245,7 @@
         const filterNav = document.getElementById('filter-nav');
         const filterButtons = filterNav.querySelectorAll('.filter-btn');
 
+        // Using the tailwind extended colors here for consistency
         const categoryColors = {
             "Direct Advocacy & Governance": "border-t-4 border-red-400",
             "Public Education & Outreach": "border-t-4 border-blue-400",
@@ -161,7 +261,16 @@
 
             filteredActivities.forEach(activity => {
                 const card = document.createElement('div');
-                card.className = `bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col ${categoryColors[activity.category]}`;
+                
+                // Note: We use the utility classes directly as defined in the tailwind.config script tag
+                const categoryClass = (activity.category === "Direct Advocacy & Governance") ? "border-t-4 border-red-400"
+                                    : (activity.category === "Public Education & Outreach") ? "border-t-4 border-primary-blue" // Using the ATA Blue for one category
+                                    : (activity.category === "Community Building & Morale (NEW)") ? "border-t-4 border-ata-yellow" // Using the ATA Yellow for another
+                                    : (activity.category === "Arts, Culture, & Solidarity") ? "border-t-4 border-green-400"
+                                    : "border-t-4 border-gray-200";
+
+                card.className = `bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col ${categoryClass}`;
+                
                 card.innerHTML = `
                     <div class="p-6 flex-grow">
                         <h3 class="text-xl font-bold text-gray-800 mb-2">${activity.title}</h3>
@@ -172,7 +281,7 @@
                         <p>${activity.logistics}</p>
                     </div>
                     <div class="bg-gray-50 px-6 py-3 border-t border-gray-100">
-                        <button class="details-btn font-semibold text-blue-500 hover:text-blue-700 transition-colors duration-200">
+                        <button class="details-btn font-semibold text-primary-blue hover:text-ata-yellow transition-colors duration-200">
                            Show Details <span class="arrow">▼</span>
                         </button>
                     </div>
@@ -209,4 +318,3 @@
     </script>
 </body>
 </html>
-
