@@ -54,11 +54,6 @@
             max-height: 500px;
             transition: max-height 0.5s ease-in;
         }
-        /* Custom border colors using Tailwind theme extension */
-        .border-t-4-red { border-top-color: #fca5a5; }
-        .border-t-4-blue { border-top-color: #60a5fa; }
-        .border-t-4-yellow { border-top-color: #fcd34d; }
-        .border-t-4-green { border-top-color: #86efac; }
     </style>
 </head>
 <body class="antialiased">
@@ -66,16 +61,15 @@
     <div class="container mx-auto px-4 py-8 md:py-12">
         
         <header class="text-center mb-8 md:mb-12">
-            <!-- Logo section removed as requested -->
             
             <h1 class="text-4xl md:text-5xl font-bold text-ata-blue">The Power of Connection</h1>
-            <p class="mt-2 text-lg md:text-xl text-gray-600">The Alberta Teachers' Association Strike Action Activities</p>
+            <p class="mt-2 text-lg md:text-xl text-gray-600">The Alberta Teachers' Association Strike Action Playbook</p>
             <p class="mt-4 max-w-3xl mx-auto text-base text-gray-500">This strategy guide is designed to empower teachers to maintain solidarity and amplify their message throughout the job action, focusing on community building and public awareness outside of school property. Use the filters below to explore activities.</p>
         </header>
         
         <nav id="filter-nav" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12">
             <!-- Filter buttons use the new ATA primary blue for active state -->
-            <button class="filter-btn font-semibold py-2 px-4 rounded-full bg-white text-gray-700 hover:bg-blue-100 shadow-sm" data-filter="All">All Activities</button>
+            <button class="filter-btn active font-semibold py-2 px-4 rounded-full bg-white text-gray-700 hover:bg-blue-100 shadow-sm" data-filter="All">All Activities</button>
             <button class="filter-btn font-semibold py-2 px-4 rounded-full bg-white text-gray-700 hover:bg-blue-100 shadow-sm" data-filter="Direct Advocacy & Governance">📢 Advocacy</button>
             <button class="filter-btn font-semibold py-2 px-4 rounded-full bg-white text-gray-700 hover:bg-blue-100 shadow-sm" data-filter="Public Education & Outreach">🌍 Outreach</button>
             <button class="filter-btn font-semibold py-2 px-4 rounded-full bg-white text-gray-700 hover:bg-blue-100 shadow-sm" data-filter="Community Building & Morale (NEW)">❤️ Morale</button>
@@ -132,6 +126,12 @@
                 title: "Street-Level Info Sessions",
                 description: "A casual, friendly booth setup in high-traffic public areas (farmer's markets, busy corners). This is a low-pressure way to share facts, answer questions, and engage directly with supportive community members.",
                 logistics: "<strong>Set Up:</strong> Book space or find a high-visibility, legal spot. Rotate 2-3 volunteers per shift. <strong>Gear:</strong> Folding table, engaging posters with key facts, simple flyers/Q&A sheets. Ensure volunteers are approachable and trained on talking points."
+            },
+             {
+                category: "Public Education & Outreach",
+                title: "Community Care in Solidarity: Group Service Day",
+                description: "Teachers volunteer time at a local food bank, blood donation clinic, or other charitable event as a unified group. This activity highlights our deep commitment to the community, even while off the job, and provides positive visibility outside of political conflict.",
+                logistics: "<strong>Set Up:</strong> Coordinate with a high-profile local charity (e.g., Food Bank, Red Cross) to schedule a group volunteer slot. Promote the event internally to ensure strong turnout. <strong>Gear:</strong> Wear union t-shirts/hoodies and clearly visible 'Teachers Care' stickers/pins to maintain high visibility."
             },
             // COMMUNITY BUILDING & MORALE (NEW)
             {
@@ -222,6 +222,7 @@
         };
         
         const renderActivities = (filter = 'All') => {
+            console.log(`Rendering activities for filter: ${filter}`); // Added log for debugging confirmation
             activitiesGrid.innerHTML = '';
             const filteredActivities = (filter === 'All') 
                 ? activities 
